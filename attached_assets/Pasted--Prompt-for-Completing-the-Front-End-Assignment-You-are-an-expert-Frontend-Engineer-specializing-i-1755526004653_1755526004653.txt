@@ -1,0 +1,95 @@
+📌 Prompt for Completing the Front-End Assignment
+You are an expert Frontend Engineer specializing in React, TypeScript, TailwindCSS, and Storybook.
+Your task is to build and document two UI components (InputField and DataTable) exactly as described below.
+🔹 Project Setup
+Tech stack: React + TypeScript + TailwindCSS
+Include Storybook for documentation (@storybook/react)
+Project structure should follow scalable component architecture (e.g., /components, /stories, /types).
+🎯 Component 1: InputField
+Requirements:
+Text input with:
+Label
+Placeholder
+Helper text
+Error message
+States: disabled, invalid, loading
+Variants: filled, outlined, ghost
+Sizes: sm, md, lg
+Optional Features:
+Clear button
+Password toggle
+Support light & dark mode
+Props Definition:
+interface InputFieldProps {  
+  value?: string;  
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;  
+  label?: string;  
+  placeholder?: string;  
+  helperText?: string;  
+  errorMessage?: string;  
+  disabled?: boolean;  
+  invalid?: boolean;  
+  variant?: 'filled' | 'outlined' | 'ghost';  
+  size?: 'sm' | 'md' | 'lg';  
+}
+Expected Design Output:
+Variants visually distinct (filled, outlined, ghost styled with Tailwind).
+States clearly visible (disabled grayed out, error in red, loading with spinner).
+Password toggle as an eye icon inside input.
+Clear button (x icon) appears when text is typed.
+📊 Component 2: DataTable
+Requirements:
+Display tabular data
+Features:
+Column sorting (ascending/descending)
+Row selection (single + multiple)
+Loading state (skeleton or spinner)
+Empty state (custom message)
+Responsive layout (horizontal scroll if many columns)
+Props Definition:
+interface DataTableProps<T> {  
+  data: T[];  
+  columns: Column<T>[];  
+  loading?: boolean;  
+  selectable?: boolean;  
+  onRowSelect?: (selectedRows: T[]) => void;  
+}
+interface Column<T> {
+  key: keyof T;
+  header: string;
+  sortable?: boolean;
+  render?: (value: any, row: T) => React.ReactNode;
+}
+Expected Design Output:
+Clean table UI with Tailwind.
+Header row includes sort icons (↑ ↓).
+Selected rows highlighted.
+Loading: show spinner or skeleton.
+Empty: show friendly placeholder message.
+📘 Storybook Documentation (for both components)
+Each Story must include:
+Component name & description
+Props & API definitions (with TypeScript types)
+Use cases & real-world examples
+Anatomy/structure breakdown
+States & variants
+Interaction behavior (hover, focus, click)
+Accessibility notes (ARIA roles, keyboard navigation, focus states)
+Theming & responsiveness handling
+Best practices (do’s & don’ts)
+📤 Final Deliverables
+GitHub Repository
+Clear folder structure (/src/components, /src/stories)
+README with setup instructions
+Short explanation of approach
+Storybook Deployment
+Deploy via Chromatic or Vercel
+Share preview link
+Screenshots or GIFs (optional)
+Show interactive states
+⚡ Now generate:
+The complete folder structure
+InputField.tsx with all variants & states
+DataTable.tsx with sorting, selection, empty, and loading states
+Storybook stories for both (with multiple examples)
+README.md explaining setup and usage
