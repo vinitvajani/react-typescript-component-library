@@ -1,0 +1,951 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Library - InputField & DataTable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'inter': ['Inter', 'system-ui', 'sans-serif'],
+                    'mono': ['JetBrains Mono', 'Consolas', 'Monaco', 'monospace']
+                },
+                colors: {
+                    primary: {
+                        50: '#E3F2FD',
+                        500: '#1976D2',
+                        600: '#1565C0',
+                        700: '#0D47A1'
+                    },
+                    gray: {
+                        50: '#FAFAFA',
+                        100: '#F5F5F5',
+                        200: '#EEEEEE',
+                        300: '#E0E0E0',
+                        400: '#BDBDBD',
+                        500: '#9E9E9E',
+                        600: '#757575',
+                        700: '#616161',
+                        800: '#424242',
+                        900: '#212121'
+                    }
+                }
+            }
+        },
+        darkMode: 'class'
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="font-inter bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+    <!-- @COMPONENT: AppShell [Main application wrapper] -->
+    <div class="min-h-screen">
+        
+        <!-- Header -->
+        <!-- @COMPONENT: Header [Top navigation bar] -->
+        <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-layer-group text-white text-sm"></i>
+                            </div>
+                            <h1 class="text-xl font-semibold text-gray-900 dark:text-white">Component Library</h1>
+                        </div>
+                        <span class="text-sm bg-primary-50 text-primary-700 px-2 py-1 rounded-full font-medium">v1.0.0</span>
+                    </div>
+                    
+                    <div class="flex items-center space-x-4">
+                        <!-- @FUNCTIONALITY: Theme toggle should switch between light and dark modes -->
+                        <button data-event="click:toggleTheme" class="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+                            <i class="fas fa-moon text-lg"></i>
+                        </button>
+                        
+                        <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">
+                            <i class="fab fa-github text-lg"></i>
+                            <span class="hidden sm:inline text-sm font-medium">GitHub</span>
+                        </a>
+                        
+                        <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                            View Storybook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- @END_COMPONENT: Header -->
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Navigation Tabs -->
+            <!-- @COMPONENT: TabNavigation [Component selection tabs] -->
+            <!-- @STATE: activeTab:string = 'inputfield' -->
+            <div class="mb-8">
+                <div class="border-b border-gray-200 dark:border-gray-700">
+                    <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                        <button data-event="click:setActiveTab('inputfield')" class="border-primary-500 text-primary-600 dark:text-primary-400 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                            InputField Component
+                        </button>
+                        <button data-event="click:setActiveTab('datatable')" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-200 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                            DataTable Component
+                        </button>
+                    </nav>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: TabNavigation -->
+
+            <!-- InputField Component Section -->
+            <!-- @COMPONENT: InputFieldShowcase [Complete InputField documentation] -->
+            <div id="inputfield-section">
+                
+                <!-- Component Header -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">InputField</h2>
+                            <p class="text-lg text-gray-600 dark:text-gray-300">A flexible input component with multiple variants, sizes, and interactive states.</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">Stable</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">TypeScript</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">3</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Variants</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">3</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Sizes</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">5</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">States</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">A11y</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Ready</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Examples Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                    
+                    <!-- Variants Showcase -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Variants</h3>
+                        <div class="space-y-6">
+                            
+                            <!-- Filled Variant -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                                <div class="relative">
+                                    <input type="email" placeholder="Enter your email" 
+                                           class="w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:bg-white dark:focus:bg-gray-600 transition-all"
+                                           data-mock="true" />
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                            <i class="fas fa-times text-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Filled variant with clear button</p>
+                            </div>
+                            
+                            <!-- Outlined Variant -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Username</label>
+                                <div class="relative">
+                                    <input type="text" placeholder="Choose username" 
+                                           class="w-full px-3 py-2 bg-transparent border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                                           data-mock="true" />
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Outlined variant</p>
+                            </div>
+                            
+                            <!-- Ghost Variant -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Search</label>
+                                <div class="relative">
+                                    <input type="text" placeholder="Search components..." 
+                                           class="w-full px-3 py-2 bg-transparent border-0 border-b border-gray-300 dark:border-gray-600 rounded-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-primary-500 focus:outline-none transition-all"
+                                           data-mock="true" />
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Ghost variant (minimal styling)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sizes & States -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Sizes & States</h3>
+                        <div class="space-y-6">
+                            
+                            <!-- Small Size -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">Small (sm)</label>
+                                <input type="text" placeholder="Small input" 
+                                       class="w-full px-2 py-1 text-sm bg-gray-100 dark:bg-gray-700 border-0 rounded text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500"
+                                       data-mock="true" />
+                            </div>
+                            
+                            <!-- Medium Size (Default) -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Medium (md) - Default</label>
+                                <input type="text" placeholder="Medium input" 
+                                       class="w-full px-3 py-2 bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500"
+                                       data-mock="true" />
+                            </div>
+                            
+                            <!-- Large Size -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Large (lg)</label>
+                                <input type="text" placeholder="Large input" 
+                                       class="w-full px-4 py-3 text-lg bg-gray-100 dark:bg-gray-700 border-0 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500"
+                                       data-mock="true" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password & Special Features -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Special Features</h3>
+                        <div class="space-y-6">
+                            
+                            <!-- Password Field -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" placeholder="Enter password" 
+                                           class="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-700"
+                                           data-mock="true" />
+                                    <button class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                        <i class="fas fa-eye text-sm"></i>
+                                    </button>
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Password field with visibility toggle</p>
+                            </div>
+                            
+                            <!-- Loading State -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Loading State</label>
+                                <div class="relative">
+                                    <input type="text" placeholder="Processing..." disabled
+                                           class="w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 bg-gray-50 dark:bg-gray-800 cursor-not-allowed"
+                                           data-mock="true" />
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <div class="animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-primary-500"></div>
+                                    </div>
+                                </div>
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Loading state with spinner</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error & Validation States -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Validation States</h3>
+                        <div class="space-y-6">
+                            
+                            <!-- Error State -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <div class="relative">
+                                    <input type="email" value="invalid-email" 
+                                           class="w-full px-3 py-2 border-2 border-red-300 dark:border-red-600 rounded-lg text-gray-900 dark:text-white bg-red-50 dark:bg-red-900/20 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                                           data-mock="true" />
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <i class="fas fa-exclamation-circle text-red-500 text-sm"></i>
+                                    </div>
+                                </div>
+                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">Please enter a valid email address</p>
+                            </div>
+                            
+                            <!-- Success State -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Username</label>
+                                <div class="relative">
+                                    <input type="text" value="john_doe" 
+                                           class="w-full px-3 py-2 border-2 border-green-300 dark:border-green-600 rounded-lg text-gray-900 dark:text-white bg-green-50 dark:bg-green-900/20 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                                           data-mock="true" />
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                        <i class="fas fa-check-circle text-green-500 text-sm"></i>
+                                    </div>
+                                </div>
+                                <p class="mt-1 text-xs text-green-600 dark:text-green-400">Username is available</p>
+                            </div>
+                            
+                            <!-- Disabled State -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 dark:text-gray-500 mb-2">Disabled Field</label>
+                                <input type="text" value="Cannot edit this" disabled
+                                       class="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 cursor-not-allowed"
+                                       data-mock="true" />
+                                <p class="mt-1 text-xs text-gray-400 dark:text-gray-500">This field is disabled</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Example -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">TypeScript Interface</h3>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg text-sm font-mono overflow-x-auto"><code class="text-gray-800 dark:text-gray-200">interface InputFieldProps {
+  value?: string;
+  onChange?: (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; void;
+  label?: string;
+  placeholder?: string;
+  helperText?: string;
+  errorMessage?: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  variant?: 'filled' | 'outlined' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  type?: 'text' | 'email' | 'password' | 'number';
+  loading?: boolean;
+  clearable?: boolean;
+  onClear?: () =&gt; void;
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Accessibility Features -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Accessibility Features</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-medium text-gray-900 dark:text-white mb-3">Keyboard Navigation</h4>
+                                <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                    <li>• Tab to focus input fields</li>
+                                    <li>• Enter to submit forms</li>
+                                    <li>• Escape to clear input (when clearable)</li>
+                                    <li>• Space to toggle password visibility</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-900 dark:text-white mb-3">Screen Reader Support</h4>
+                                <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                    <li>• ARIA labels and descriptions</li>
+                                    <li>• Error state announcements</li>
+                                    <li>• Loading state indicators</li>
+                                    <li>• Required field notifications</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: InputFieldShowcase -->
+
+            <!-- DataTable Component Section -->
+            <!-- @COMPONENT: DataTableShowcase [Complete DataTable documentation] -->
+            <div id="datatable-section" class="hidden">
+                
+                <!-- Component Header -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">DataTable</h2>
+                            <p class="text-lg text-gray-600 dark:text-gray-300">A powerful data table component with sorting, selection, and responsive design.</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">Stable</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-medium">Generic</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">∞</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Data Types</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">✓</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Sortable</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">□</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Selectable</div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div class="text-2xl font-bold text-primary-500">📱</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Responsive</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live DataTable Example -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">User Management Table</h3>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">5 selected</span>
+                                <button class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                                    Export Selected
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <!-- @FUNCTIONALITY: This table should implement sorting and selection functionality -->
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-900">
+                                <tr>
+                                    <th class="px-6 py-3 text-left">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500" data-mock="true" checked />
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        <div class="flex items-center space-x-1 cursor-pointer hover:text-gray-700 dark:hover:text-gray-200">
+                                            <span>Name</span>
+                                            <div class="flex flex-col">
+                                                <i class="fas fa-caret-up text-xs text-primary-500"></i>
+                                                <i class="fas fa-caret-down text-xs text-gray-300 dark:text-gray-600 -mt-1"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        <div class="flex items-center space-x-1 cursor-pointer hover:text-gray-700 dark:hover:text-gray-200">
+                                            <span>Email</span>
+                                            <div class="flex flex-col">
+                                                <i class="fas fa-caret-up text-xs text-gray-300 dark:text-gray-600"></i>
+                                                <i class="fas fa-caret-down text-xs text-gray-300 dark:text-gray-600 -mt-1"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        <div class="flex items-center space-x-1 cursor-pointer hover:text-gray-700 dark:hover:text-gray-200">
+                                            <span>Role</span>
+                                            <div class="flex flex-col">
+                                                <i class="fas fa-caret-up text-xs text-gray-300 dark:text-gray-600"></i>
+                                                <i class="fas fa-caret-down text-xs text-gray-300 dark:text-gray-600 -mt-1"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        <span>Status</span>
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        <span>Last Login</span>
+                                    </th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                        <span>Actions</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                
+                                <!-- @MAP: users.map(user => ( -->
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 bg-blue-50 dark:bg-blue-900/20 border-l-2 border-primary-500">
+                                    <td class="px-6 py-4">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500" data-mock="true" checked />
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- A professional headshot of a smiling woman with brown hair in business attire -->
+                                            <img src="https://pixabay.com/get/g1c7f759d744de737d7edad77cbb45e5fc2837f4072e00d024c1a16d4ec9e82bf8ee1686be2b6b535528a5f9b77e802003f1f86084828f0470e49ceee84cd79cc_1280.jpg" alt="Sarah Johnson" class="h-10 w-10 rounded-full object-cover" />
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white" data-bind="user.name">Sarah Johnson</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400" data-bind="user.department">Engineering</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900 dark:text-white" data-bind="user.email">sarah.johnson@company.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-300">
+                                            Senior Developer
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                            <span class="w-1.5 h-1.5 mr-1.5 bg-green-400 rounded-full"></span>
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        2 hours ago
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex items-center justify-end space-x-2">
+                                            <button class="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
+                                                <i class="fas fa-edit text-sm"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="px-6 py-4">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500" data-mock="true" />
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- A professional headshot of a man with dark hair wearing a suit and tie -->
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&h=150" alt="Michael Chen" class="h-10 w-10 rounded-full object-cover" />
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Michael Chen</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Product</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900 dark:text-white">michael.chen@company.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
+                                            Product Manager
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                            <span class="w-1.5 h-1.5 mr-1.5 bg-green-400 rounded-full"></span>
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        1 day ago
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex items-center justify-end space-x-2">
+                                            <button class="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
+                                                <i class="fas fa-edit text-sm"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 bg-blue-50 dark:bg-blue-900/20 border-l-2 border-primary-500">
+                                    <td class="px-6 py-4">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500" data-mock="true" checked />
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- A professional headshot of a woman with blonde hair in business casual attire -->
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&h=150" alt="Emily Rodriguez" class="h-10 w-10 rounded-full object-cover" />
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Emily Rodriguez</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Design</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900 dark:text-white">emily.rodriguez@company.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pink-100 text-pink-800 dark:bg-pink-900/20 dark:text-pink-300">
+                                            UI Designer
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300">
+                                            <span class="w-1.5 h-1.5 mr-1.5 bg-yellow-400 rounded-full"></span>
+                                            Away
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        3 days ago
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex items-center justify-end space-x-2">
+                                            <button class="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
+                                                <i class="fas fa-edit text-sm"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <td class="px-6 py-4">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500" data-mock="true" />
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- A professional headshot of a man with glasses and a beard in business attire -->
+                                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&h=150" alt="David Kim" class="h-10 w-10 rounded-full object-cover" />
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">David Kim</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Engineering</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900 dark:text-white">david.kim@company.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                            DevOps Engineer
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300">
+                                            <span class="w-1.5 h-1.5 mr-1.5 bg-red-400 rounded-full"></span>
+                                            Offline
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        1 week ago
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex items-center justify-end space-x-2">
+                                            <button class="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
+                                                <i class="fas fa-edit text-sm"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 bg-blue-50 dark:bg-blue-900/20 border-l-2 border-primary-500">
+                                    <td class="px-6 py-4">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500" data-mock="true" checked />
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <!-- A professional headshot of a young woman with curly hair smiling at the camera -->
+                                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&h=150" alt="Jessica Taylor" class="h-10 w-10 rounded-full object-cover" />
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Jessica Taylor</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">Marketing</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900 dark:text-white">jessica.taylor@company.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/20 dark:text-orange-300">
+                                            Marketing Manager
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300">
+                                            <span class="w-1.5 h-1.5 mr-1.5 bg-green-400 rounded-full"></span>
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                                        5 minutes ago
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex items-center justify-end space-x-2">
+                                            <button class="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300">
+                                                <i class="fas fa-edit text-sm"></i>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
+                                                <i class="fas fa-trash text-sm"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- @END_MAP )) -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Footer -->
+                    <div class="bg-white dark:bg-gray-800 px-6 py-3 border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-700 dark:text-gray-300">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">47</span> results
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button class="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50" disabled>
+                                    Previous
+                                </button>
+                                <button class="px-3 py-1 text-sm bg-primary-500 text-white rounded-md hover:bg-primary-600">1</button>
+                                <button class="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">2</button>
+                                <button class="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">3</button>
+                                <button class="px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional States Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    
+                    <!-- Loading State -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Loading State</h3>
+                        <div class="space-y-3">
+                            <!-- @FUNCTIONALITY: Loading state should show skeleton placeholders while data loads -->
+                            <div class="animate-pulse">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                    <div class="flex-1 space-y-2">
+                                        <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                                        <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animate-pulse">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                    <div class="flex-1 space-y-2">
+                                        <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-2/3"></div>
+                                        <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="animate-pulse">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                                    <div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                    <div class="flex-1 space-y-2">
+                                        <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-4/5"></div>
+                                        <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-2/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">Skeleton loading animation</p>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Empty State</h3>
+                        <div class="text-center py-12">
+                            <div class="w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-users text-3xl text-gray-400 dark:text-gray-500"></i>
+                            </div>
+                            <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No users found</h4>
+                            <p class="text-gray-500 dark:text-gray-400 mb-6 max-w-sm mx-auto">
+                                Get started by adding your first user to the system.
+                            </p>
+                            <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                <i class="fas fa-plus mr-2"></i>
+                                Add First User
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Empty state with call-to-action</p>
+                    </div>
+                </div>
+
+                <!-- TypeScript Interface -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">TypeScript Interfaces</h3>
+                    </div>
+                    <div class="p-6">
+                        <pre class="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg text-sm font-mono overflow-x-auto"><code class="text-gray-800 dark:text-gray-200">interface DataTableProps&lt;T&gt; {
+  data: T[];
+  columns: Column&lt;T&gt;[];
+  loading?: boolean;
+  selectable?: boolean;
+  sortable?: boolean;
+  onRowSelect?: (selectedRows: T[]) =&gt; void;
+  onSort?: (key: keyof T, direction: 'asc' | 'desc') =&gt; void;
+  emptyMessage?: string;
+  className?: string;
+}
+
+interface Column&lt;T&gt; {
+  key: keyof T;
+  header: string;
+  sortable?: boolean;
+  render?: (value: any, row: T) =&gt; React.ReactNode;
+  width?: string;
+  align?: 'left' | 'center' | 'right';
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-sort text-blue-600 dark:text-blue-400"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Column Sorting</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Click column headers to sort data in ascending or descending order.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-check-square text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Row Selection</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Select individual rows or use bulk selection with the header checkbox.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-mobile-alt text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Responsive Design</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Horizontal scroll on smaller screens to maintain data visibility.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-orange-100 dark:bg-orange-900/20 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-spinner text-orange-600 dark:text-orange-400"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Loading States</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Skeleton loading animation while data is being fetched.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-inbox text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Empty States</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Friendly empty state messages with call-to-action buttons.</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-teal-100 dark:bg-teal-900/20 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-universal-access text-teal-600 dark:text-teal-400"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Accessibility</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">ARIA labels, keyboard navigation, and screen reader support.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: DataTableShowcase -->
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-6 h-6 bg-primary-500 rounded-md flex items-center justify-center">
+                                <i class="fas fa-layer-group text-white text-xs"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 dark:text-white">Component Library</h3>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            Production-ready React components built with TypeScript and TailwindCSS.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-3">Resources</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">Documentation</a></li>
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">Storybook</a></li>
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">GitHub</a></li>
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">NPM Package</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-3">Support</h4>
+                        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">Issues</a></li>
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">Discussions</a></li>
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">Contributing</a></li>
+                            <li><a href="#" class="hover:text-primary-600 dark:hover:text-primary-400">Changelog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-6 text-center">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        © 2024 Component Library. Built with ❤️ for developers.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- @END_COMPONENT: AppShell -->
+
+    <script>
+        (function() {
+            // TODO: Implement theme toggle functionality
+            // TODO: Implement tab switching between components
+            // TODO: Implement table sorting and selection functionality
+            // TODO: Implement form validation and state management
+
+            // Simple tab switching for demo purposes
+            const tabs = document.querySelectorAll('[data-event*="setActiveTab"]');
+            const inputFieldSection = document.getElementById('inputfield-section');
+            const dataTableSection = document.getElementById('datatable-section');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const isDataTableTab = this.textContent.includes('DataTable');
+                    
+                    // Update tab styles
+                    tabs.forEach(t => {
+                        t.className = t.className.replace('border-primary-500 text-primary-600 dark:text-primary-400', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-200');
+                    });
+                    
+                    this.className = this.className.replace('border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-200', 'border-primary-500 text-primary-600 dark:text-primary-400');
+                    
+                    // Toggle sections
+                    if (isDataTableTab) {
+                        inputFieldSection.classList.add('hidden');
+                        dataTableSection.classList.remove('hidden');
+                    } else {
+                        dataTableSection.classList.add('hidden');
+                        inputFieldSection.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Simple theme toggle for demo
+            const themeToggle = document.querySelector('[data-event*="toggleTheme"]');
+            themeToggle?.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const icon = this.querySelector('i');
+                if (document.documentElement.classList.contains('dark')) {
+                    icon.className = 'fas fa-sun text-lg';
+                } else {
+                    icon.className = 'fas fa-moon text-lg';
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
