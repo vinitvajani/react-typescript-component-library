@@ -107,28 +107,62 @@ const userColumns = [
     key: 'name' as keyof User,
     header: 'Name',
     sortable: true,
+    render: (value: string, row: User) => (
+      <div className="flex items-center space-x-3">
+        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-medium">
+          {row.name.split(' ').map(n => n[0]).join('')}
+        </div>
+        <div>
+          <div className="font-medium text-gray-900 dark:text-white">{value}</div>
+          <div className="text-sm text-gray-500 dark:text-gray-400">{row.department}</div>
+        </div>
+      </div>
+    ),
   },
   {
     key: 'email' as keyof User,
     header: 'Email',
     sortable: true,
+    render: (value: string) => (
+      <span className="text-sm text-gray-600 dark:text-gray-300">{value}</span>
+    ),
   },
   {
     key: 'role' as keyof User,
     header: 'Role',
-  },
-  {
-    key: 'department' as keyof User,
-    header: 'Department',
+    render: (value: string) => (
+      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-300">
+        {value}
+      </span>
+    ),
   },
   {
     key: 'status' as keyof User,
     header: 'Status',
+    render: (value: string) => {
+      const statusConfig = {
+        active: { color: 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-300', dot: 'bg-green-400' },
+        away: { color: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-300', dot: 'bg-yellow-400' },
+        offline: { color: 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-300', dot: 'bg-red-400' },
+      };
+      
+      const config = statusConfig[value as keyof typeof statusConfig];
+      
+      return (
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.color}`}>
+          <span className={`w-1.5 h-1.5 mr-1.5 ${config.dot} rounded-full`}></span>
+          {value.charAt(0).toUpperCase() + value.slice(1)}
+        </span>
+      );
+    },
   },
   {
     key: 'lastLogin' as keyof User,
     header: 'Last Login',
     align: 'right' as const,
+    render: (value: string) => (
+      <span className="text-sm text-gray-500 dark:text-gray-400">{value}</span>
+    ),
   },
 ];
 
