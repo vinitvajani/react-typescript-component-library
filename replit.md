@@ -13,6 +13,8 @@ Both components are built with accessibility in mind, support dark mode, and inc
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Deployment target: GitHub for job application submission (frontend engineer position)
+Project should look authentic and professionally built, not AI-generated
 
 ## System Architecture
 
