@@ -9,25 +9,29 @@ It includes two ready-to-use components: **InputField** and **DataTable**.
 
 ### InputField Variants
 
-<table>
-  <tr>
-    <td><img src="./screenshots/inputfield-default.png" width="250"/></td>
-    <td><img src="./screenshots/inputfield-fontsize.png" width="250"/></td>
-    <td><img src="./screenshots/inputfield-password.png" width="250"/></td>
-    <td><img src="./screenshots/inputfireld-errorstate.png" width="250"/></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="./screenshots/inputfield-default.png" width="500"/>
+  <img src="./screenshots/inputfield-fontsize.png" width="500"/>
+</p>
+<p align="center">
+  <img src="./screenshots/inputfield-password.png" width="500"/>
+  <img src="./screenshots/inputfireld-errorstate.png" width="500"/>
+</p>
+
+
 
 ### DataTable Variants
 
-<table>
-  <tr>
-    <td><img src="./screenshots/datatable-default.png" width="250"/></td>
-    <td><img src="./screenshots/datatable-columnsorting.png" width="250"/></td>
-    <td><img src="./screenshots/datatable-rowselection.png" width="250"/></td>
-    <td><img src="./screenshots/datatable-emptystate.png" width="250"/></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="./screenshots/datatable-default.png" width="500" height="700"/>
+  <img src="./screenshots/datatable-columnsorting.png" width="500" height="700"/>
+</p>
+<p align="center">
+  <img src="./screenshots/datatable-rowselection.png" width="500" height="700"/>
+  <img src="./screenshots/datatable-emptystate.png" width="500" height="700"/>
+</p>
+
+
 
 ---
 
@@ -65,22 +69,22 @@ It includes two ready-to-use components: **InputField** and **DataTable**.
 
 ## Getting Started
 
-```bash
-# Clone this repository
+
+Clone this repository
 git clone <your-repo-url>
 cd react-component-library
 
-# Install dependencies
+Install dependencies
 npm install
 
-# Start development server
+Start development server
 npm run dev
 
-# Visit http://localhost:5000 to view the demos
+Visit http://localhost:5000 to view the demos
 
-Using the Components
+### Using the Components
 
-InputField
+#### InputField
 
 import { InputField } from './components/InputField/InputField';
 
@@ -103,7 +107,7 @@ import { InputField } from './components/InputField/InputField';
   helperText="Must be at least 8 characters"
 />
 
-DataTable
+#### DataTable
 
 import { DataTable } from './components/DataTable/DataTable';
 
@@ -124,8 +128,8 @@ const columns = [
   onRowSelect={(selected) => setSelectedUsers(selected)}
 />
 
-Project Structure
-
+### Project Structure
+```
 ├── client/                 # Frontend application
 │   ├── src/
 │   │   ├── components/    # Reusable UI components
